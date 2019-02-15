@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using KSP.UI.Screens;
+using ToolbarControl_NS;
 
 namespace LightsOut {
 	[KSPAddon(KSPAddon.Startup.EditorAny, false)]
@@ -19,7 +20,7 @@ namespace LightsOut {
 		LOShaders shaderManager;
 		LOExternalLights externalLightsManager;
 
-		ApplicationLauncherButton launcherButton;
+		//ApplicationLauncherButton launcherButton;
 //		bool launcherButtonNeedsInitializing = true;
 		string munIcon = "LightsOut/Textures/mun_icon";
 		string sunIcon = "LightsOut/Textures/sun_icon";
@@ -34,17 +35,32 @@ namespace LightsOut {
 		}
 
 		public void Start() {
-			GameEvents.onGUIApplicationLauncherReady.Add(OnGUIAppLauncherReady);
+#if false
+            GameEvents.onGUIApplicationLauncherReady.Add(OnGUIAppLauncherReady);
+#endif
+            OnGUIAppLauncherReady();
 		}
 
 		void OnDestroy() {
-			GameEvents.onGUIApplicationLauncherReady.Remove (OnGUIAppLauncherReady);
-			if (launcherButton != null)
+#if false
+            GameEvents.onGUIApplicationLauncherReady.Remove (OnGUIAppLauncherReady);
+            if (launcherButton != null)
 				ApplicationLauncher.Instance.RemoveModApplication (launcherButton);
+#endif
+            if (toolbarControl != null)
+            {
+                toolbarControl.OnDestroy();
+                Destroy(toolbarControl);
+            }
 		}
 
-		void OnGUIAppLauncherReady() {
-			if (launcherButton == null) {
+        internal const string MODID = "LightsOutNS";
+        internal const string MODNAME = "LightsOut";
+        ToolbarControl toolbarControl;
+
+        void OnGUIAppLauncherReady() {
+#if false
+            if (launcherButton == null) {
 				launcherButton = ApplicationLauncher.Instance.AddModApplication(
 					ToggleDayNight,
 					ToggleDayNight,
@@ -55,7 +71,17 @@ namespace LightsOut {
 					ApplicationLauncher.AppScenes.VAB | ApplicationLauncher.AppScenes.SPH,
 					(Texture)GameDatabase.Instance.GetTexture(munIcon, false));
 			}
-		}
+#endif
+            toolbarControl = gameObject.AddComponent<ToolbarControl>();
+            toolbarControl.AddToAllToolbars(ToggleDayNight, ToggleDayNight,
+                ApplicationLauncher.AppScenes.VAB | ApplicationLauncher.AppScenes.SPH,
+                MODID,
+                "LightsOutButton",
+                munIcon + "-38",
+                munIcon + "-24",
+                MODNAME
+            );
+        }
 
 		void ToggleDayNight() {
 			SetTime((currentTime == EditorTime.Day) ? EditorTime.Night : EditorTime.Day);
@@ -134,12 +160,18 @@ namespace LightsOut {
 			SetPartLights(newTime == EditorTime.Night);
 
 			if (newTime == EditorTime.Night) {
-				launcherButton.SetTexture((Texture)GameDatabase.Instance.GetTexture(sunIcon, false));
+#if false
+                launcherButton.SetTexture((Texture)GameDatabase.Instance.GetTexture(sunIcon, false));
+#endif
+                toolbarControl.SetTexture(sunIcon + "-38", sunIcon + "-24");
 			}
 			else {
-				launcherButton.SetTexture((Texture)GameDatabase.Instance.GetTexture(munIcon, false));
-			}
-		}
+#if false
+                launcherButton.SetTexture((Texture)GameDatabase.Instance.GetTexture(munIcon, false));
+#endif
+                toolbarControl.SetTexture(munIcon + "-38", munIcon + "-24");
+            }
+        }
 
 		void SetPartLights(bool lightsEnabled) {
 			currentPartLightsEnabled = lightsEnabled;

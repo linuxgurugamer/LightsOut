@@ -1,0 +1,5 @@
+0.2.3.0
+	Adoption by Linuxgurugamer
+	Merged in changes from Kujuman
+	fixed issue with vessel not getting shaded upon first attempt, and then always being shaded
+	Added support for the ToolbarController (now a dependency)
