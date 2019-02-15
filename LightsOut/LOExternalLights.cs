@@ -34,10 +34,18 @@ namespace LightsOut {
                         //[LOG 17:53:55.158] Light 5: Spotlight, RGBA(1.000, 1.000, 1.000, 1.000), Default ON
                         //[LOG 17:53:55.159] Parent: Day Lights
 					lightsToChange = new List<LightToChange>() {
+#if false
                         new LightToChange(){ name = "SpotlightCraft", parentName = "Day Lights" },
                         new LightToChange(){ name = "SpotlightSun", parentName = "VAB_interior_modern" },
                         new LightToChange(){ name = "Realtime_SpotlightScenery", parentName = "Lighting_Realtime" },
                         new LightToChange(){ name = "Shadow Light", parentName = "Day Lights" }					};
+#else
+                        new LightToChange(){ name = "SpotlightCraft", parentName = "Day Lights" },
+                        new LightToChange(){ name = "SpotlightSun", parentName = "VAB_interior_modern" }, //
+                        new LightToChange(){ name = "Realtime_SpotlightScenery", parentName = "Lighting_Realtime" },
+                        new LightToChange(){ name = "Shadow Light", parentName = "Day Lights" }
+#endif
+                    };
 					break;
 
 				case EditorLevel.Level2:
@@ -58,8 +66,9 @@ namespace LightsOut {
                         //[LOG 17:56:18.874] Light 7: Spotlight, RGBA(1.000, 1.000, 1.000, 1.000), Default ON
                         //[LOG 17:56:18.875] Parent: Day Lights
 					lightsToChange = new List<LightToChange>() {
+
                         new LightToChange(){ name = "SpotlightCraft", parentName = "Day Lights" },
-                        new LightToChange(){ name = "SpotlightSun", parentName = "VAB_interior_modern" },
+                        new LightToChange(){ name = "SpotlightSun", parentName = "VAB_interior_modern" }, //
                         new LightToChange(){ name = "Realtime_SpotlightScenery", parentName = "Lighting_Realtime" },
                         new LightToChange(){ name = "Shadow Light", parentName = "Day Lights" }
                     };
@@ -87,8 +96,9 @@ namespace LightsOut {
                         //[LOG 17:58:21.712] Light 9: Spotlight, RGBA(1.000, 1.000, 1.000, 1.000), Default ON
                         //[LOG 17:58:21.713] Parent: Day Lights
 					lightsToChange = new List<LightToChange>() {
+
                         new LightToChange(){ name = "SpotlightCraft", parentName = "Day Lights" },
-                        new LightToChange(){ name = "SpotlightSun", parentName = "VAB_interior_modern" },
+                        new LightToChange(){ name = "SpotlightSun", parentName = "VAB_interior_modern" }, //
                         new LightToChange(){ name = "Realtime_SpotlightScenery", parentName = "Lighting_Realtime" },
                         new LightToChange(){ name = "Shadow Light", parentName = "Day Lights" }
                     };
@@ -115,6 +125,7 @@ namespace LightsOut {
                         //[LOG 17:54:50.077] Light 7: SpotlightWindow, RGBA(0.866, 0.863, 0.903, 1.000), Default OFF
                         //[LOG 17:54:50.078] Parent: Editors_DayLights
 					lightsToChange = new List<LightToChange>() {
+
                         new LightToChange(){ name = "Realtime_SpotlightCraft", parentName = "Lighting_Realtime" },
                         new LightToChange(){ name = "Realtime_ExteriorSun", parentName = "Lighting_Realtime" },
                         new LightToChange(){ name = "Realtime_SpotlightScenery", parentName = "Lighting_Realtime" },
@@ -140,6 +151,7 @@ namespace LightsOut {
                         //[LOG 17:57:04.724] Light 7: SpotlightWindow, RGBA(0.866, 0.863, 0.903, 1.000), Default OFF
                         //[LOG 17:57:04.725] Parent: Editors_DayLights
 					lightsToChange = new List<LightToChange>() {
+
                         new LightToChange(){ name = "Realtime_SpotlightCraft", parentName = "Lighting_Realtime" },
                         new LightToChange(){ name = "Realtime_ExteriorSun", parentName = "Lighting_Realtime" },
                         new LightToChange(){ name = "Realtime_SpotlightScenery", parentName = "Lighting_Realtime" },
@@ -165,6 +177,7 @@ namespace LightsOut {
                         //[LOG 17:59:41.833] Light 7: SpotlightWindow, RGBA(0.866, 0.863, 0.903, 1.000), Default ON
                         //[LOG 17:59:41.834] Parent: Editors_DayLights
 					lightsToChange = new List<LightToChange>() {
+
                         new LightToChange(){ name = "Realtime_SpotlightCraft", parentName = "Lighting_Realtime" },
                         new LightToChange(){ name = "Realtime_ExteriorSun", parentName = "Lighting_Realtime" },
                         new LightToChange(){ name = "Realtime_SpotlightScenery", parentName = "Lighting_Realtime" },
@@ -182,8 +195,9 @@ namespace LightsOut {
 					if (light.name.Equals(lightToChange.name, StringComparison.Ordinal)
 					    && light.transform.parent.gameObject.name.Equals(lightToChange.parentName, StringComparison.Ordinal)) {
 						light.enabled = (time == EditorTime.Day ? true : false);
-					}
-				}
+                        //Debug.Log("Light: " + light.name + ", Parent: " + light.transform.parent.gameObject.name + ", " + light.color + ", Default " + (light.enabled ? "ON" : "OFF"));
+                    }
+                }
 			}
 		}
 	}
