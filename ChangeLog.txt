@@ -1,3 +1,6 @@
+0.2.3.1
+	Added dependency check for the ToolbarController
+
 0.2.3.0
 	Adoption by Linuxgurugamer
 	Merged in changes from Kujuman
