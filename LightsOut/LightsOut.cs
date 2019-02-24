@@ -90,9 +90,12 @@ namespace LightsOut {
 		void Update() {
 			// Ignore keystrokes when a text field has focus (e.g. part search, craft title box)
 			GameObject obj = EventSystem.current.currentSelectedGameObject;
-			bool inputFieldIsFocused = (obj != null && obj.GetComponent<InputField> () != null && obj.GetComponent<InputField> ().isFocused);
-			if (inputFieldIsFocused)
-				return;
+			//bool inputFieldIsFocused = (obj != null && obj.GetComponent<InputField> () != null && obj.GetComponent<InputField> ().isFocused);
+			//if (inputFieldIsFocused)
+			//	return;
+            // No need to look for components, besides, that wasn't working and the following does
+            if (obj.name == "SearchInput" || obj.name == "ShipName" || obj.name == "ShipDescription")
+                return;
 
 			// changed from L to P, to avoid conflicts with RCS Build Aid (translation keys) and RPM Camera (toggle all camera FOV's)
 			if (Input.GetKeyDown (KeyCode.P)) {
