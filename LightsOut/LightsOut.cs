@@ -94,7 +94,7 @@ namespace LightsOut {
 			//if (inputFieldIsFocused)
 			//	return;
             // No need to look for components, besides, that wasn't working and the following does
-            if (obj.name == "SearchInput" || obj.name == "ShipName" || obj.name == "ShipDescription")
+            if (obj != null && (obj.name == "SearchInput" || obj.name == "ShipName" || obj.name == "ShipDescription"))
                 return;
 
 			// changed from L to P, to avoid conflicts with RCS Build Aid (translation keys) and RPM Camera (toggle all camera FOV's)

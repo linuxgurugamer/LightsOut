@@ -1,3 +1,6 @@
+0.2.3.3
+	Fixed nullref spam
+
 0.2.3.2
 	Fixed check for input fields, so that the keys aren't active if any of the input fields (search, ship name, ship description) are active
 
