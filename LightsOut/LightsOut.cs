@@ -22,8 +22,8 @@ namespace LightsOut {
 
 		//ApplicationLauncherButton launcherButton;
 //		bool launcherButtonNeedsInitializing = true;
-		string munIcon = "LightsOut/Textures/mun_icon";
-		string sunIcon = "LightsOut/Textures/sun_icon";
+		string munIcon = "LightsOut/PluginData/Textures/mun_icon";
+		string sunIcon = "LightsOut/PluginData/Textures/sun_icon";
 
 		public void Awake()
 		{
@@ -73,36 +73,51 @@ namespace LightsOut {
 			}
 #endif
             toolbarControl = gameObject.AddComponent<ToolbarControl>();
-            toolbarControl.AddToAllToolbars(ToggleDayNight, ToggleDayNight,
+            toolbarControl.AddToAllToolbars(null, null,
                 ApplicationLauncher.AppScenes.VAB | ApplicationLauncher.AppScenes.SPH,
                 MODID,
                 "LightsOutButton",
                 munIcon + "-38",
                 munIcon + "-24",
-                MODNAME
+                MODNAME, 
+                "Left-click to toggle building lights\nRight-click to toggle vessel lights"
             );
+            toolbarControl.AddLeftRightClickCallbacks(ToggleDayNight, TogglePartLights);
+                
         }
 
 		void ToggleDayNight() {
 			SetTime((currentTime == EditorTime.Day) ? EditorTime.Night : EditorTime.Day);
 		}
 
-		void Update() {
-			// Ignore keystrokes when a text field has focus (e.g. part search, craft title box)
-			GameObject obj = EventSystem.current.currentSelectedGameObject;
-			//bool inputFieldIsFocused = (obj != null && obj.GetComponent<InputField> () != null && obj.GetComponent<InputField> ().isFocused);
-			//if (inputFieldIsFocused)
-			//	return;
-            // No need to look for components, besides, that wasn't working and the following does
-            if (obj != null && (obj.name == "SearchInput" || obj.name == "ShipName" || obj.name == "ShipDescription"))
-                return;
+        void TogglePartLights()
+        {
+            SetPartLights(!currentPartLightsEnabled); ;
+        }
 
-			// changed from L to P, to avoid conflicts with RCS Build Aid (translation keys) and RPM Camera (toggle all camera FOV's)
-			if (Input.GetKeyDown (KeyCode.P)) {
-				SetTime ((currentTime == EditorTime.Day) ? EditorTime.Night : EditorTime.Day);
-			} else if (Input.GetKeyDown (KeyCode.U)) {
-				SetPartLights (!currentPartLightsEnabled);
-			}
+		void Update() {
+            if (HighLogic.CurrentGame.Parameters.CustomParams<LightsOutSettings>().useKeysUandP)
+            {
+                // Ignore keystrokes when a text field has focus (e.g. part search, craft title box)
+                GameObject obj = EventSystem.current.currentSelectedGameObject;
+			    //bool inputFieldIsFocused = (obj != null && obj.GetComponent<InputField> () != null && obj.GetComponent<InputField> ().isFocused);
+			    //if (inputFieldIsFocused)
+			    //	return;
+                // No need to look for components, besides, that wasn't working and the following does
+                if (obj != null && (obj.name == "SearchInput" || obj.name == "ShipName" || obj.name == "ShipDescription"))
+                    return;
+
+			    // changed from L to P, to avoid conflicts with RCS Build Aid (translation keys) and RPM Camera (toggle all camera FOV's)
+         
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    SetTime((currentTime == EditorTime.Day) ? EditorTime.Night : EditorTime.Day);
+                }
+                else if (Input.GetKeyDown(KeyCode.U))
+                {
+                    SetPartLights(!currentPartLightsEnabled);
+                }
+            }
 		}
 
 		void Setup() {

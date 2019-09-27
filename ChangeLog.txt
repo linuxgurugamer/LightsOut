@@ -1,4 +1,9 @@
 
+0.2.4
+	Added settings option to disable the keys
+	Added right-click to button to toggle the vessel lights
+	Added tooltip for when toolbar is showing tooltips
+
 0.2.3.4
 	Added InstallChecker
 	Updated AssemblyVersion.tt
