@@ -1,23 +1,20 @@
 {
-    "NAME"     : "Lights Out",
-    "URL"      : "https://raw.githubusercontent.com/linuxgurugamer/LightsOut/master/GameData/LightsOut/LightsOut.version",
-    "DOWNLOAD" : "https://github.com/linuxgurugamer/LightsOut/releases",
-    "GITHUB" :
-    {
-        "USERNAME" : "linuxgurugamer",
-        "REPOSITORY" : "LightsOut"
-    },
-    "VERSION" :
-    {
-        "MAJOR" : 0,
-        "MINOR" : 2,
-        "PATCH" : 4,
-        "BUILD" : 0
-    },
-    "KSP_VERSION_MIN" :
-    {
-        "MAJOR" : 1,
-        "MINOR" : 4,
-        "PATCH" : 5
-    }
+  "NAME": "Lights Out",
+  "URL": "https://raw.githubusercontent.com/linuxgurugamer/LightsOut/master/GameData/LightsOut/LightsOut.version",
+  "DOWNLOAD": "https://github.com/linuxgurugamer/LightsOut/releases",
+  "GITHUB": {
+    "USERNAME": "linuxgurugamer",
+    "REPOSITORY": "LightsOut"
+  },
+  "VERSION": {
+    "MAJOR": 0,
+    "MINOR": 3,
+    "PATCH": 0,
+    "BUILD": 0
+  },
+  "KSP_VERSION_MIN": {
+    "MAJOR": 1,
+    "MINOR": 8,
+    "PATCH": 0
+  }
 }
