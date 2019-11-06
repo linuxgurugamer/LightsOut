@@ -1,5 +1,8 @@
 ChangeLog
 
+0.3.0.1
+	Fixed name of Settings page
+
 0.3.0
 	Updated for KSP 1.8
 

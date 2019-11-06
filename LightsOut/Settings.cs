@@ -12,8 +12,8 @@ namespace LightsOut
     {
         public override string Title { get { return "General"; } }
         public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
-        public override string Section { get { return "Modular Segmented SRBs"; } }
-        public override string DisplaySection { get { return "Modular Segmented SRBs"; } }
+        public override string Section { get { return "Lights Out"; } }
+        public override string DisplaySection { get { return "Lights Out"; } }
         public override int SectionOrder { get { return 3; } }
         public override bool HasPresets { get { return true; } }
 
